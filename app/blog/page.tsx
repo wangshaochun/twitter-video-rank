@@ -4,7 +4,15 @@ import { useState, useEffect } from 'react';
 import { CalendarDays, User, Tag, FileText } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { getBlogPosts, BlogPost } from '@/lib/database';
+
+export interface BlogPost {
+  id: number;
+  title: string;
+  content: string;
+  author: string;
+  created_at: string;
+  tags: string;
+}
 
 export default function BlogPage() {
   const [posts, setPosts] = useState<BlogPost[]>([]);
@@ -16,8 +24,13 @@ export default function BlogPage() {
 
   const loadPosts = async () => {
     try {
-      const blogPosts = await getBlogPosts();
-      setPosts(blogPosts);
+      const response = await fetch('/api/blog');
+      if (response.ok) {
+        const blogPosts = await response.json();
+        setPosts(blogPosts);
+      } else {
+        console.error('Failed to fetch blog posts');
+      }
     } catch (error) {
       console.error('Failed to load blog posts:', error);
     } finally {
@@ -30,8 +43,8 @@ export default function BlogPage() {
       <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">博文列表</h1>
-            <p className="text-xl text-gray-600">読み込み中...</p>
+            <h1 className="text-4xl font-bold text-gray-900 mb-4">日記</h1>
+            <p className="text-xl text-gray-600">Twitter動画ダウンロードに関する最新記事とお知らせ</p>
           </div>
           <div className="space-y-6">
             {[...Array(3)].map((_, i) => (
@@ -61,7 +74,7 @@ export default function BlogPage() {
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            博文列表
+            日記
           </h1>
           <p className="text-xl text-gray-600">
             Twitter動画ダウンロードに関する最新記事とお知らせ
@@ -93,9 +106,10 @@ export default function BlogPage() {
                 </CardDescription>
               </CardHeader>
               <CardContent className="pt-6">
-                <p className="text-gray-700 leading-relaxed mb-4 text-base">
-                  {post.content}
-                </p>
+                <div 
+                  className="text-gray-700 leading-relaxed mb-4 text-base prose prose-blue max-w-none"
+                  dangerouslySetInnerHTML={{ __html: post.content }}
+                />
                 {post.tags && (
                   <div className="flex items-center space-x-2">
                     <Tag className="h-4 w-4 text-gray-500" />

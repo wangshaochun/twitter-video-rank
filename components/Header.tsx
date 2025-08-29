@@ -33,7 +33,7 @@ export default function Header() {
               }`}
             >
               <Home className="h-4 w-4" />
-              <span>首页</span>
+              <span>ホーム</span>
             </Link>
             <Link
               href="/blog"
@@ -44,7 +44,7 @@ export default function Header() {
               }`}
             >
               <FileText className="h-4 w-4" />
-              <span>博文列表</span>
+              <span>日記</span>
             </Link>
           </nav>
         </div>

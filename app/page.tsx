@@ -1,47 +1,40 @@
 'use client';
 
-import { useEffect } from 'react';
 import VideoDownloader from '@/components/VideoDownloader';
-import VideoRankings from '@/components/VideoRankings';
+import Sites from '@/components/Sites';
 import FAQ from '@/components/FAQ';
-import { initDatabase } from '@/lib/database';
 
 export default function Home() {
-  useEffect(() => {
-    // Initialize database when the app loads
-    initDatabase().catch(console.error);
-  }, []);
-
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Hero Section */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-4">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Twitter動画ダウンロード
+            Twitter保存ランキング
           </h1>
           <p className="text-xl text-gray-600 mb-2">
-            簡単、高速、安全なTwitter動画保存サービス
+            みんながダウンロード保存した人気のツイッター動画
           </p>
           <p className="text-lg text-blue-600 font-medium">
-            人気動画ランキングもチェックできます
+            twitterの人気動画を見る
           </p>
         </div>
 
         {/* Video Downloader */}
-        <div className="mb-12">
+        <div className="mb-6">
           <VideoDownloader />
         </div>
 
         {/* Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Rankings - Takes 2 columns on large screens */}
-          <div className="lg:col-span-2">
-            <VideoRankings />
+        <div className="space-y-8">
+          {/* Sites */}
+          <div>
+            <Sites />
           </div>
 
-          {/* FAQ - Takes 1 column on large screens */}
-          <div className="lg:col-span-1">
+          {/* FAQ */}
+          <div>
             <FAQ />
           </div>
         </div>

@@ -5,7 +5,6 @@ import { Download, Link as LinkIcon, PlayCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { addVideoDownload } from '@/lib/database';
 
 export default function VideoDownloader() {
   const [url, setUrl] = useState('');
@@ -37,8 +36,18 @@ export default function VideoDownloader() {
       
       setDownloadInfo(videoInfo);
       
-      // Add to database
-      await addVideoDownload(url, videoInfo.title, videoInfo.thumbnail);
+      // Add to database via API
+      await fetch('/api/videos', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          url: url,
+          title: videoInfo.title,
+          thumbnail: videoInfo.thumbnail
+        })
+      });
       
     } catch (error) {
       console.error('Download failed:', error);
