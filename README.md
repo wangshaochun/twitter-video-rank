@@ -182,7 +182,7 @@ npx shadcn-ui@latest add [component-name]
 ## 📞 サポート・お問い合わせ
 
 - GitHub Issues: [課題報告・機能要望](https://github.com/twittervideo/twitter-video-rank/issues)
-- 公式サイト: [Twitter Video Rank](https://your-domain.com)
+- 公式サイト: [Twitter Video Rank](https://twitter-rank.net)
 
 ---
 
