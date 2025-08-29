@@ -33,7 +33,7 @@ const faqData = [
 ];
 
 export default function FAQ() {
-  const [openItems, setOpenItems] = useState<number[]>([]);
+  const [openItems, setOpenItems] = useState<number[]>([0, 1, 2, 3, 4, 5]);
 
   const toggleItem = (index: number) => {
     setOpenItems(prev => 
@@ -57,10 +57,11 @@ export default function FAQ() {
       <CardContent className="pt-6">
         <div className="space-y-3">
           {faqData.map((item, index) => (
-            <Collapsible key={index}>
+            <Collapsible key={index} open={openItems.includes(index)}>
               <CollapsibleTrigger
                 onClick={() => toggleItem(index)}
                 className="flex items-center justify-between w-full text-left p-4 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors"
+                data-state={openItems.includes(index) ? "open" : "closed"}
               >
                 <span className="font-medium text-gray-900 pr-4">{item.question}</span>
                 {openItems.includes(index) ? (
@@ -69,7 +70,7 @@ export default function FAQ() {
                   <ChevronRight className="h-5 w-5 text-gray-500 flex-shrink-0" />
                 )}
               </CollapsibleTrigger>
-              <CollapsibleContent className="px-4 pb-4">
+              <CollapsibleContent className="px-4 pb-4" data-state={openItems.includes(index) ? "open" : "closed"}>
                 <div className="pt-2 text-gray-600 leading-relaxed">
                   {item.answer}
                 </div>

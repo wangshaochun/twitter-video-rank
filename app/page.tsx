@@ -2,6 +2,7 @@
 
 import VideoDownloader from '@/components/VideoDownloader';
 import Sites from '@/components/Sites';
+import Precautions from '@/components/Precautions';
 import FAQ from '@/components/FAQ';
 
 export default function Home() {
@@ -31,6 +32,11 @@ export default function Home() {
           {/* Sites */}
           <div>
             <Sites />
+          </div>
+
+          {/* Precautions */}
+          <div>
+            <Precautions />
           </div>
 
           {/* FAQ */}
