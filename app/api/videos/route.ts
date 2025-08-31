@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getTopVideos, addVideoDownload } from '@/lib/database';
 
+// 强制该路由为动态，防止静态生成时出错
+export const dynamic = 'force-dynamic';
+
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);

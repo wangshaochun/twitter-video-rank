@@ -80,32 +80,12 @@ export default function SiteRankings() {
               <span className="flex items-center"><Calendar className="h-3 w-3 mr-1" />最大1年間</span>
               <span className="flex items-center"><Eye className="h-3 w-3 mr-1" />豊富な分類</span>
             </div>
-          </div> 
-          {/* サイト3: TwiHub2 */}
+          </div> \
+          {/* サイト3: ssstwitter */}
           <div className="border rounded-lg p-4 hover:shadow-md transition-shadow">
             <div className="flex items-start justify-between mb-3">
               <div className="flex items-center space-x-3">
                 <Badge className={getRankBadgeColor(3)}>3位</Badge>
-                <h3 className="text-lg font-semibold text-gray-800">TwiHub2（ツイハバ）</h3>
-              </div>
-              
-            </div>
-            <p className="text-gray-600 mb-2">
-              「TwiHub2」は24時間、3日間、1週間のランキングに加え、殿堂入り・過去・お気に入りランキングも提供。
-            </p>
-            <p className="text-sm text-blue-600 mb-2">
-               Webサイトアドレス：<a href="https://twihub.me/v2/ranking.php" target="_blank" rel="noopener noreferrer">https://twihub.me/v2/ranking.php</a>  
-            </p>
-            <div className="flex items-center space-x-4 text-sm text-gray-500">
-              <span className="flex items-center"><Calendar className="h-3 w-3 mr-1" />24時間・3日・1週間</span>
-              <span className="flex items-center"><Eye className="h-3 w-3 mr-1" />殿堂入りランキング</span>
-            </div>
-          </div>
-          {/* サイト4: ssstwitter */}
-          <div className="border rounded-lg p-4 hover:shadow-md transition-shadow">
-            <div className="flex items-start justify-between mb-3">
-              <div className="flex items-center space-x-3">
-                <Badge className={getRankBadgeColor(4)}>4位</Badge>
                 <h3 className="text-lg font-semibold text-gray-800">ssstwitter</h3>
               </div> 
             </div>
@@ -119,27 +99,34 @@ export default function SiteRankings() {
               <span className="flex items-center"><Calendar className="h-3 w-3 mr-1" />動画ダウンロード</span>
               <span className="flex items-center"><Eye className="h-3 w-3 mr-1" />MP3変換機能</span>
             </div>
-          </div> 
-          {/* サイト5: twicoco */}
+          </div>   
+          {/* サイト4: TwiHub2 */}
           <div className="border rounded-lg p-4 hover:shadow-md transition-shadow">
             <div className="flex items-start justify-between mb-3">
               <div className="flex items-center space-x-3">
-                <Badge className={getRankBadgeColor(5)}>5位</Badge>
-                <h3 className="text-lg font-semibold text-gray-800">twicoco</h3>
+                <Badge className={getRankBadgeColor(4)}>4位</Badge>
+                <h3 className="text-lg font-semibold text-gray-800">TwiHub2（ツイハバ）</h3>
               </div>
               
             </div>
             <p className="text-gray-600 mb-2">
-              「twicoco」はTwiHub2と同様の機能を提供。24時間、3日間、1週間および殿堂入り・過去・お気に入りランキング対応。
+              「TwiHub2」は24時間、3日間、1週間のランキングに加え、殿堂入り・過去・お気に入りランキングも提供。
+            </p>
+            <p className="text-gray-600 mb-2">
+              「TwiHub2」は24時間、3日間、1週間のランキングに加え、殿堂入り・過去・お気に入りランキングも提供。
             </p>
             <p className="text-sm text-blue-600 mb-2">
-              Webサイトアドレス：<a href="https://twicoco.com/?type=history" target="_blank" rel="noopener noreferrer">https://twicoco.com/?type=history</a>   
+              注意：クリックすると常に広告が表示され、そのまま閉じることができます
+            </p>
+            <p className="text-sm text-blue-600 mb-2">
+              新着DL：<a href="https://twihub.net/?type=realtime" target="_blank" rel="noopener noreferrer">https://twihub.net/?type=realtime</a>
             </p>
             <div className="flex items-center space-x-4 text-sm text-gray-500">
               <span className="flex items-center"><Calendar className="h-3 w-3 mr-1" />24時間・3日・1週間</span>
-              <span className="flex items-center"><Eye className="h-3 w-3 mr-1" />お気に入り機能</span>
+              <span className="flex items-center"><Eye className="h-3 w-3 mr-1" />殿堂入りランキング</span>
             </div>
-          </div>  
+          </div>
+
           {/* サイト6: Twihozon */}
           <div className="border rounded-lg p-4 hover:shadow-md transition-shadow">
             <div className="flex items-start justify-between mb-3">
