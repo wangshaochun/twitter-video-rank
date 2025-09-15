@@ -35,6 +35,7 @@ export default function Header() {
               <Home className="h-4 w-4" />
               <span>ホーム</span>
             </Link>
+            
             <Link
               href="/blog"
               className={`flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium transition-colors ${

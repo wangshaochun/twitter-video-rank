@@ -81,53 +81,37 @@ export default function BlogPage() {
           </p>
         </div>
 
-        {/* Blog Posts */}
-        <div className="space-y-8">
+        {/* Blog Posts List */}
+        <div className="space-y-6">
           {posts.map((post) => (
-            <Card key={post.id} className="shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <CardHeader className="bg-gradient-to-r from-blue-50 to-indigo-50">
-                <CardTitle className="flex items-start space-x-2 text-blue-900">
-                  <FileText className="h-5 w-5 mt-0.5 flex-shrink-0" />
-                  <span className="leading-tight">{post.title}</span>
-                </CardTitle>
-                <CardDescription className="flex flex-wrap items-center gap-4 text-blue-700">
-                  <div className="flex items-center space-x-1">
-                    <User className="h-4 w-4" />
-                    <span>{post.author}</span>
-                  </div>
-                  <div className="flex items-center space-x-1">
-                    <CalendarDays className="h-4 w-4" />
-                    <span>{new Date(post.created_at).toLocaleDateString('ja-JP', {
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric'
-                    })}</span>
-                  </div>
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="pt-6">
-                <div 
-                  className="text-gray-700 leading-relaxed mb-4 text-base prose prose-blue max-w-none"
-                  dangerouslySetInnerHTML={{ __html: post.content }}
-                />
-                {post.tags && (
-                  <div className="flex items-center space-x-2">
-                    <Tag className="h-4 w-4 text-gray-500" />
-                    <div className="flex flex-wrap gap-2">
-                      {post.tags.split(',').map((tag, index) => (
-                        <Badge 
-                          key={index} 
-                          variant="secondary" 
-                          className="bg-blue-100 text-blue-800 hover:bg-blue-200"
-                        >
-                          {tag.trim()}
-                        </Badge>
-                      ))}
+            <a
+              key={post.id}
+              href={`/blog/${post.id}`}
+              className="block"
+            >
+              <Card className="shadow hover:shadow-lg transition-shadow duration-200 cursor-pointer">
+                <CardHeader className="bg-gradient-to-r from-blue-50 to-indigo-50">
+                  <CardTitle className="flex items-start space-x-2 text-blue-900">
+                    <FileText className="h-5 w-5 mt-0.5 flex-shrink-0" />
+                    <span className="leading-tight">{post.title}</span>
+                  </CardTitle>
+                  <CardDescription className="flex flex-wrap items-center gap-4 text-blue-700">
+                    <div className="flex items-center space-x-1">
+                      <User className="h-4 w-4" />
+                      <span>{post.author}</span>
                     </div>
-                  </div>
-                )}
-              </CardContent>
-            </Card>
+                    <div className="flex items-center space-x-1">
+                      <CalendarDays className="h-4 w-4" />
+                      <span>{new Date(post.created_at).toLocaleDateString('ja-JP', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                      })}</span>
+                    </div>
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+            </a>
           ))}
         </div>
 
