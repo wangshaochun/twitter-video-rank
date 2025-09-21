@@ -1,72 +1,10 @@
-'use client';
-
-import { useState, useEffect } from 'react';
 import { CalendarDays, User, Tag, FileText } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { getBlogPosts, BlogPost } from '@/lib/database';
 
-export interface BlogPost {
-  id: number;
-  title: string;
-  content: string;
-  author: string;
-  created_at: string;
-  tags: string;
-}
-
-export default function BlogPage() {
-  const [posts, setPosts] = useState<BlogPost[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    loadPosts();
-  }, []);
-
-  const loadPosts = async () => {
-    try {
-      const response = await fetch('/api/blog');
-      if (response.ok) {
-        const blogPosts = await response.json();
-        setPosts(blogPosts);
-      } else {
-        console.error('Failed to fetch blog posts');
-      }
-    } catch (error) {
-      console.error('Failed to load blog posts:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">日記</h1>
-            <p className="text-xl text-gray-600">Twitter動画ダウンロードに関する最新記事とお知らせ</p>
-          </div>
-          <div className="space-y-6">
-            {[...Array(3)].map((_, i) => (
-              <Card key={i} className="animate-pulse">
-                <CardHeader>
-                  <div className="h-6 bg-gray-200 rounded w-3/4"></div>
-                  <div className="h-4 bg-gray-200 rounded w-1/2"></div>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-2">
-                    <div className="h-4 bg-gray-200 rounded"></div>
-                    <div className="h-4 bg-gray-200 rounded w-5/6"></div>
-                    <div className="h-4 bg-gray-200 rounded w-4/6"></div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </div>
-    );
-  }
+export default async function BlogPage() {
+  const posts = await getBlogPosts();
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">

@@ -1,5 +1,5 @@
-import path from 'path';
-import fs from 'fs/promises';
+import { Pathway_Gothic_One } from "next/font/google";
+
 
 export interface VideoRecord {
   id: number;
@@ -33,60 +33,23 @@ interface DatabaseData {
   lastBlogId: number;
 }
 
-let cachedData: DatabaseData | null = null;
-const DB_FILE_PATH = path.join(process.cwd(), 'data', 'database.json');
+
 
 // 获取初始示例数据
 function getInitialData(): DatabaseData {
   return {
-    videos: [
-      {
-        id: 1,
-        url: 'https://twitter.com/i/status/1234567890',
-        title: '面白いネコの動画',
-        thumbnail: 'https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg?auto=compress&cs=tinysrgb&w=300',
-        download_count: 1250,
-        created_at: new Date().toISOString()
-      },
-      {
-        id: 2,
-        url: 'https://twitter.com/i/status/1234567891',
-        title: '桜の美しい景色',
-        thumbnail: 'https://images.pexels.com/photos/1416530/pexels-photo-1416530.jpeg?auto=compress&cs=tinysrgb&w=300',
-        download_count: 980,
-        created_at: new Date().toISOString()
-      },
-      {
-        id: 3,
-        url: 'https://twitter.com/i/status/1234567892',
-        title: 'おいしい料理のレシピ',
-        thumbnail: 'https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&w=300',
-        download_count: 875,
-        created_at: new Date().toISOString()
-      },
-      {
-        id: 4,
-        url: 'https://twitter.com/i/status/1234567893',
-        title: '東京の夜景',
-        thumbnail: 'https://images.pexels.com/photos/2614818/pexels-photo-2614818.jpeg?auto=compress&cs=tinysrgb&w=300',
-        download_count: 756,
-        created_at: new Date().toISOString()
-      },
-      {
-        id: 5,
-        url: 'https://twitter.com/i/status/1234567894',
-        title: 'かわいい子犬',
-        thumbnail: 'https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&cs=tinysrgb&w=300',
-        download_count: 694,
-        created_at: new Date().toISOString()
-      }
-    ],
+    videos: [  ],
     blogPosts: [
       {
         id: 1,
         title: 'python実装twitterビデオダウンロードコード詳細',
         content: `
-          <pre>import sys
+このコードは、Twitter から動画をダウンロードするための Python 実装です。
+
+## 必要なライブラリ
+
+\`\`\`python
+import sys
 import os
 import requests
 import json
@@ -343,28 +306,180 @@ class TwitterVideoDownloader:
 
 
 def main():
-    """メインエントリーポイント"""
+    """メイン実行関数"""
     if len(sys.argv) != 2:
-        print("使用方法: python script.py <tweet_url>")
+        print("使用方法: python twitter_downloader.py <Twitter URL>")
         sys.exit(1)
-
-    tweet_url = sys.argv[1]
-    downloader = TwitterVideoDownloader()
-
-    try:
-        downloader.download_video(tweet_url)
-        logger.info("動画ダウンロードが正常に完了しました")
-    except Exception as e:
-        logger.error(f"動画のダウンロードに失敗: {e}")
-        sys.exit(1)
-
+        
+    url = sys.argv[1]
+    success = download_twitter_video(url)
+    
+    if success:
+        print("動画のダウンロードが完了しました")
+    else:
+        print("動画のダウンロードに失敗しました")
 
 if __name__ == "__main__":
     main()
-    </pre> `,
+\`\`\`
+
+## 使用方法
+
+1. 必要なライブラリをインストール:
+   \`\`\`bash
+   pip install requests
+   \`\`\`
+
+2. スクリプトを実行:
+   \`\`\`bash
+   python twitter_downloader.py https://twitter.com/username/status/1234567890
+   \`\`\`
+
+## 注意事項
+
+- Twitter の利用規約を遵守してください
+- 著作権に注意して使用してください
+- 大量のダウンロードは避けてください`,
         author: 'データアナリスト',
-        created_at: new Date().toISOString(),
+        created_at: '2025-09-11T10:00:00Z',
         tags: 'ダウンロード,Twitter,動画'
+      },
+       {
+        id: 2,
+        title: 'Twitter Chrome拡張機能おすすめ：動画ダウンロード・ノイズブロック・体験向上・旧版復元',
+        content: ` 
+Twitterの使用体験を向上させるために、以下の優秀なChromeプラグインをご紹介します。これらのプラグインは動画ダウンロード、ノイズフィルタリング、旧インターフェース復元など、様々な機能を提供し、より快適なTwitterライフを実現します。
+
+## 1. Media Harvest : X (Twitter) Media Downloader
+
+https://chromewebstore.google.com/detail/hpcgabhdlnapolkkjpejieegfpehfdok
+
+**ワンクリックでTwitterから動画と画像をダウンロード**
+
+このアドオンを使用すると、サードパーティーサービスを必要とせずに、Twitter または TweetDeck から動画と画像をワンクリックでダウンロードできます。
+
+**注意：他のダウンロード管理拡張機能をインストールしている場合、競合状態が発生する可能性があります。**
+
+### 提供機能：
+- カスタムファイル名
+- センシティブコンテンツの自動表示
+- キーボードショートカット
+- 動画サムネイルのダウンロード
+
+### 提供されない機能：
+- ツイートクローリング
+- 一括ダウンロード
+- ファイル圧縮
+
+*注意：この拡張機能はWebクローラーではありません。*
+
+## 2. Calm Twitter
+
+**心を落ち着かせるためのTwitterタイムライン整理ツール**
+
+この拡張機能は、Twitterタイムラインからトレンド情報を隠し、心を落ち着かせます。
+
+### 主な機能：
+- ナビゲーションから不要な項目を非表示
+- リプライ、リツイート、いいね、ブックマーク、表示回数の数字を非表示
+- サイドバーからトレンド、おすすめフォロー、購読プロンプト、ニュースを非表示
+- フォロー・フォロワー数を非表示
+- ロゴの横に「Calm」を表示
+
+この拡張機能は設定保存のための権限のみを必要とし、表示・非表示の切り替えのみを行います。
+
+ソースコードはGitHubで公開されています：
+https://github.com/yusukesaitoh/calm-twitter
+
+## 3. Old Twitter Layout
+
+**2015年の旧Twitterレイアウトを復元（2025年対応）**
+
+この拡張機能は元のTwitterに CSS を追加するのではなく、完全に異なるクライアントで元の新しいTwitterクライアントを置き換えるため、Twitterの上にスタイルを追加するだけの代替案よりも高速です。この拡張機能を使用するには、Twitterアカウントにログインしている必要があります。
+
+インストール後、https://twitter.com/old/settings にアクセスして、お好みに合わせて設定してください。デフォルトでは時系列タイムラインに切り替わりますが、設定でアルゴリズムタイムラインに戻すことができます。
+
+コードはオープンソースです！https://github.com/dimdenGD/OldTwitter でコードを確認し、問題を報告できます。
+
+### 機能：
+- 基本的にTwitterのほぼ全ての機能を実装
+- 超高速、多くのページが元のTwitterよりも速く読み込まれる
+- カスタムプロフィールリンクカラーサポート
+- プロフィールリンクカラーを変更でき、他の拡張機能ユーザーにも表示される
+- Twemojiの有効化/無効化、お気に入り（星）をいいね（ハート）に戻す、デフォルトリンクカラーとフォントの変更
+- ツイートを開かずに翻訳
+- フォロー解除者の確認
+- Twitterからすべての分析と追跡を削除
+- ダークモードサポート（時間帯に応じたライト/ダークモードの切り替えも可能）
+- 特定ユーザーのツイート自動翻訳機能
+- 全ての広告を削除
+- 動画とGIFの簡単ダウンロード
+- 豊富なホットキー
+- カスタムCSSサポート
+
+## 4. Control Panel for Twitter
+
+https://chromewebstore.google.com/detail/kpmjjdhbcfebfjgdnpjagcndoelnidfj
+
+**Twitterをより詳細にコントロールし、欠けている機能とUI改善を追加**
+
+### ホームタイムライン機能：
+- デフォルトで「フォロー中」（時系列）タイムラインを使用
+- 「おすすめ」（アルゴリズム）タイムラインを非表示
+- リツイートを別タブで表示
+- ブロックまたは非表示にしたアカウントの引用ツイートを非表示
+- 特定ツイートの引用を非表示
+- 引用ツイートに「この会話を非表示」メニュー項目を追加
+- 「新しいツイートを見る」を非表示
+- タイムラインで「フォローする人」「話題をフォロー」等を非表示
+- 全幅タイムラインコンテンツ（サイドバーを非表示にしてタイムラインコンテンツを全幅化）
+
+### UI改善：
+- Xブランディング変更を置換
+- ツイート下の視点を非表示
+- 通知メニューの「認証済み」タブを非表示
+- Twitter Blue認証マークをTwitter Blueアイコンに置換
+- Twitter Blueの返信を非表示
+- Twitter Blue強制販売を非表示
+- 購読サービスを非表示
+- 「その他」メニューに「非表示ワードを追加」を追加
+- クイックブロック（確認ダイアログをスキップ）
+- ユーザープロフィールでリツイートを非表示
+- 検索でデフォルトで「最新」タブを使用
+- 引用ツイート表示時に被引用ツイートを非表示
+
+### UI調整：
+- Chirpフォントを使用しない
+- ツイート内の太字・斜体テキストを無効化
+- ナビゲーションバーで通常のテキストフォントスタイルを使用
+- ナビゲーション密度（快適/コンパクト）
+- ドロップダウンメニューで通常のフォントサイズを使用
+- フォロワー/フォロー中ボタンの変更（単色/テーマ）
+
+### アルゴリズムコンテンツの削除：
+- サイドバーの「話題」「おすすめ」等を非表示
+- 「探索」ページのコンテンツを非表示、検索のみに使用
+- 「もっと見つける」ツイートを非表示
+
+### 「エンゲージメント」の削減：
+- 指標を非表示
+- インタラクション減少モード（ツイート下のアクションバーを非表示、返信のみがインタラクション手段）
+- ホームタイムラインを無効化（Twitterで時間を浪費しすぎている場合の対策）
+
+### 使用しないUI項目の非表示：
+- ツイート下のブックマークボタン
+- ツイート下のシェアボタン
+- アカウント切り替え
+- メッセージドロワー
+- 使用しない「その他」メニュー項目を非表示
+
+## まとめ
+
+これらのChromeプラグインを活用することで、Twitterの使用体験を大幅に向上させることができます。ダウンロード機能から環境の最適化まで、ニーズに合わせて選択してご利用ください。各プラグインは異なる目的を持っているため、複数を組み合わせて使用することで、より理想的なTwitter環境を構築できます。
+`,
+        author: 'データアナリスト',
+        created_at: '2025-09-21T17:00:00Z',
+        tags: 'Twitter,chrome拡張機能'
       }
     ],
     lastVideoId: 5,
@@ -372,55 +487,21 @@ if __name__ == "__main__":
   };
 }
 
-// 确保数据目录存在
-async function ensureDataDirectory(): Promise<void> {
-  const dataDir = path.dirname(DB_FILE_PATH);
-  try {
-    await fs.access(dataDir);
-  } catch {
-    await fs.mkdir(dataDir, { recursive: true });
-  }
-}
 
-// 从文件读取数据
-async function loadData(): Promise<DatabaseData> {
-  if (cachedData) {
-    return cachedData;
-  }
-
-  try {
-    await ensureDataDirectory();
-    const fileContent = await fs.readFile(DB_FILE_PATH, 'utf-8');
-    cachedData = JSON.parse(fileContent);
-    return cachedData!;
-  } catch (error) {
-    // 如果文件不存在或格式错误，返回初始数据
-    console.log('Creating new database file with initial data');
-    cachedData = getInitialData();
-    await saveData(cachedData);
-    return cachedData;
-  }
+// 直接返回初始数据，不做持久化
+function loadData(): DatabaseData {
+  return getInitialData();
 }
-
-// 保存数据到文件
-async function saveData(data: DatabaseData): Promise<void> {
-  await ensureDataDirectory();
-  await fs.writeFile(DB_FILE_PATH, JSON.stringify(data, null, 2), 'utf-8');
-  cachedData = data;
-}
-
-// 初始化数据库（兼容原有接口）
-export async function initDatabase(): Promise<void> {
-  await loadData();
-}
+ 
 
 // 获取热门视频
 export async function getTopVideos(limit: number = 20): Promise<VideoRecord[]> {
-  const data = await loadData();
+  const data = loadData();
   return data.videos
     .sort((a, b) => b.download_count - a.download_count)
     .slice(0, limit);
 }
+
 
 // 获取站点记录
 export async function getSites(limit: number = 20): Promise<SiteRecord[]> {
@@ -435,35 +516,10 @@ export async function getSites(limit: number = 20): Promise<SiteRecord[]> {
   ].slice(0, limit);
 }
 
+
 // 获取博客文章
 export async function getBlogPosts(): Promise<BlogPost[]> {
-  const data = await loadData();
+  const data = loadData();
   return data.blogPosts.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
 }
 
-// 添加视频下载记录
-export async function addVideoDownload(url: string, title: string, thumbnail?: string): Promise<void> {
-  const data = await loadData();
-  
-  // 检查是否已存在该视频
-  const existingVideoIndex = data.videos.findIndex(video => video.url === url);
-  
-  if (existingVideoIndex !== -1) {
-    // 如果存在，增加下载次数
-    data.videos[existingVideoIndex].download_count += 1;
-  } else {
-    // 如果不存在，添加新视频
-    const newVideo: VideoRecord = {
-      id: data.lastVideoId + 1,
-      url,
-      title,
-      thumbnail: thumbnail || '',
-      download_count: 1,
-      created_at: new Date().toISOString()
-    };
-    data.videos.push(newVideo);
-    data.lastVideoId += 1;
-  }
-  
-  await saveData(data);
-}

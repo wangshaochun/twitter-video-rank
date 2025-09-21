@@ -9,7 +9,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 export default function VideoDownloader() {
   const [url, setUrl] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [downloadInfo, setDownloadInfo] = useState<any>(null);
+  const [downloadInfo] = useState<any>(null);
 
   const handleDownload = async () => {
     if (!url || !url.includes('twitter.com')) {
@@ -32,22 +32,7 @@ export default function VideoDownloader() {
           { quality: '480p', size: '8.7 MB', url: '#' },
           { quality: '360p', size: '5.3 MB', url: '#' }
         ]
-      };
-      
-      setDownloadInfo(videoInfo);
-      
-      // Add to database via API
-      await fetch('/api/videos', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          url: url,
-          title: videoInfo.title,
-          thumbnail: videoInfo.thumbnail
-        })
-      });
+      }; 
       
     } catch (error) {
       console.error('Download failed:', error);
