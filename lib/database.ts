@@ -545,9 +545,79 @@ https://chromewebstore.google.com/detail/kpmjjdhbcfebfjgdnpjagcndoelnidfj
 ---
 
 `,
- author: 'データアナリスト',
+        author: 'データアナリスト',
         created_at: '2025-09-25T12:00:00Z',
         tags: 'Twitter,Grok'
+      },
+      {
+        id: 5,
+        title: 'X(旧Twitter)検索術10選',
+        content: ` 
+## 1. 高評価ツイートの検索
+**方法:** \`from:ユーザー名 min_faves:いいね数\`
+
+**例:** \`from:hasantoxr min_faves:10000\`
+> 指定ユーザーのいいね数10,000以上のツイートを検索
+
+## 2. 返信数の多いツイートの検索
+**方法:** \`from:ユーザー名 min_replies:最低返信数\`
+
+**例:** \`from:hasantoxr min_replies:500\`
+> 指定ユーザーの返信数500以上のツイートを検索
+
+## 3. 完全一致検索
+**方法:** 検索語を引用符（\`""\`）で囲む
+
+**例:** \`"ChatGPT prompt"\`
+> 「ChatGPT prompt」を完全に含む投稿・ユーザー・メディアを検索
+
+## 4. 投稿タイプでのフィルター
+検索結果を投稿タイプ（画像・動画など）で絞り込み
+
+## 5. 特定語句の除外
+**方法:** 除外語の前にハイフン（\`-\`）を付ける
+
+**例:** \`ChatGPT -prompts\`
+> 「ChatGPT」を含み「prompts」を含まない結果を表示
+
+## 6. 日付検索（過去指定）
+**方法:** \`キーワード until:YYYY-MM-DD\`
+
+**例:** \`chatgpt until:2023-05-01\`
+> 2023年5月1日以前の「ChatGPT」関連投稿を検索
+
+## 7. 日付検索（未来指定）
+**方法:** \`キーワード since:YYYY-MM-DD\`
+
+**例:** \`ChatGPT since:2023-12-06\`
+> 2023年12月6日以降の「ChatGPT」関連投稿を検索
+
+## 8. 特定ユーザー宛ての投稿検索
+**方法:** \`from:送信者名 to:受信者名\`
+
+**例:** \`from:ihteshamit to:hasantoxr\`
+> ihteshamitがhasantoxr宛てに送信したツイートを検索
+
+## 9. 言語指定検索
+**方法:** \`キーワード lang:言語コード\`
+
+**例:** \`chatgpt lang:zh-cn\`
+> 中国語の「ChatGPT」関連投稿を検索
+
+## 10. 投稿地域の指定
+**方法:** \`near:地域名 within:距離\`
+
+**例:** \`near:shanghai within:10mi\`
+> 上海から10マイル（約16km）圏内の投稿を検索
+
+## まとめ
+以上10種類の高度な検索機能を紹介しました。
+
+全てを暗記する必要はなく、プラットフォームの「高度な検索」画面から同じ機能を利用できます。
+`, 
+        author: 'データアナリスト',
+        created_at: '2025-09-26T12:20:00Z',
+        tags: 'Twitter,検索'
       }
     ]
   };

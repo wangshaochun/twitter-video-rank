@@ -6,6 +6,9 @@ import { Badge } from '@/components/ui/badge';
 import ServerMarkdownRenderer from '@/components/ServerMarkdownRenderer';
 import { getBlogPosts, BlogPost } from '@/lib/database';
 
+import dynamic from 'next/dynamic';
+const DynamicShareButtons = dynamic(() => import('@/components/ShareButtons'), { ssr: false });
+
 async function getBlogPost(id: string): Promise<BlogPost | null> {
   const blogPosts = await getBlogPosts();
   const post = blogPosts.find(post => post.id === parseInt(id));
@@ -54,6 +57,9 @@ export default async function BlogDetailPage({ params }: { params: { id: string 
                 </div>
               </div>
             )}
+
+            {/* 分享按钮 - 客户端组件 */}
+            <DynamicShareButtons title={post.title} />
           </CardContent>
         </Card>
         <div className="mt-8 text-center">

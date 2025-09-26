@@ -33,7 +33,7 @@ export default async function BlogPage() {
                     <FileText className="h-5 w-5 mt-0.5 flex-shrink-0" />
                     <span className="leading-tight">{post.title}</span>
                   </CardTitle>
-                  <CardDescription className="flex flex-wrap items-center gap-4 text-blue-700">
+                  <div className="flex flex-wrap items-center gap-4 text-blue-700">
                     <div className="flex items-center space-x-1">
                       <User className="h-4 w-4" />
                       <span>{post.author}</span>
@@ -46,7 +46,7 @@ export default async function BlogPage() {
                         day: 'numeric'
                       })}</span>
                     </div>
-                  </CardDescription>
+                  </div>
                 </CardHeader>
               </Card>
             </a>
